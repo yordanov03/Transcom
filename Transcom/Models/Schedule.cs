@@ -5,8 +5,8 @@ namespace PSITranscom.Models
     public class Schedule
     {
         public Schedule(
-            int sequenceNumber,
-            int trainNumber,
+            string sequenceNumber,
+            string trainNumber,
             string locationCode,
             string arrivalTime,
             string departureTime)
@@ -17,9 +17,9 @@ namespace PSITranscom.Models
             this.ArrivalTime = arrivalTime;
             this.DepartureTime = departureTime;
         }
-        public int SequenceNumber { get; set; }
+        public string SequenceNumber { get; set; }
 
-        public int TrainNumber { get; set; }
+        public string TrainNumber { get; set; }
 
         public string LocationCode { get; set; }
 

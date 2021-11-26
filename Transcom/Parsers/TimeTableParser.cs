@@ -7,7 +7,7 @@ namespace Transcom.Parsers
 {
     public class TimeTableParser
     {
-        public static List<Schedule> Parse(string[] timeTableInput, int[] trainNumbers)
+        public static List<Schedule> Parse(string[] timeTableInput, string[] trainNumbers)
         {
             var parsedTimeTables = new List<Schedule>();
 
@@ -17,14 +17,14 @@ namespace Transcom.Parsers
             {
                 foreach (Match match in rgx.Matches(timetable))
                 {
-                    var parsedTrainNumber = int.Parse(match.Groups[2].Value);
+                    var parsedTrainNumber = match.Groups[2].Value;
 
                     foreach (var trainNumber in trainNumbers)
                     {
                         if (trainNumber == parsedTrainNumber)
                         {
                             var parsedtimetable = new Schedule(
-                            int.Parse(match.Groups[1].Value),
+                            match.Groups[1].Value,
                             parsedTrainNumber,
                             match.Groups[3].Value,
                             match.Groups[4].Value,

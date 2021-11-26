@@ -5,14 +5,14 @@ namespace PSITranscom.Models
     public class RunningDay
     {
         public RunningDay(
-            int runningDayCode,
-            DateTime runningDate)
+            string runningDayCode,
+            string runningDate)
         {
             this.RunningDayCode = runningDayCode;
             this.RunningDate = runningDate;
         }
-        public int RunningDayCode { get; set; }
-        public DateTime RunningDate { get; set; }
+        public string RunningDayCode { get; set; }
+        public string RunningDate { get; set; }
 
     }
 }

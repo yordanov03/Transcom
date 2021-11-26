@@ -11,7 +11,6 @@ namespace Transcom.Parsers
         public static List<TimeTable> Parse(string[] runningDaysInput)
         {
             var runningDays = new List<TimeTable>();
-            var dateParser = new DateParser();
 
             Regex rgx = new Regex(RegexPatternConstants.DayParserRegexExpression);
 
@@ -20,10 +19,10 @@ namespace Transcom.Parsers
                 foreach (Match match in rgx.Matches(day))
                 {
                     var runningDay = new TimeTable(
-                       dateParser.ParseDate(match.Groups[1].Value),
-                       int.Parse(match.Groups[2].Value),
-                       dateParser.ParseDate(match.Groups[3].Value),
-                       int.Parse(match.Groups[4].Value));
+                       match.Groups[1].Value,
+                       match.Groups[2].Value,
+                       match.Groups[3].Value,
+                       match.Groups[4].Value);
                     runningDays.Add(runningDay);
                 }
             }

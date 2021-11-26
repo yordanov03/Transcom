@@ -5,10 +5,10 @@ namespace PSITranscom.Models
     public class TimeTable
     {
         public TimeTable(
-            DateTime validFrom,
-            int runningCode,
-            DateTime validTo,
-            int trainNumber)
+            string validFrom,
+            string runningCode,
+            string validTo,
+            string trainNumber)
         {
             this.ValidFrom = validFrom;
             this.RunningCode = runningCode;
@@ -16,9 +16,9 @@ namespace PSITranscom.Models
             this.TrainNumber = trainNumber;
         }
 
-        public DateTime ValidFrom { get; set; }
-        public int RunningCode { get; set; }
-        public DateTime ValidTo { get; set; }
-        public int TrainNumber { get; set; }
+        public string ValidFrom { get; set; }
+        public string RunningCode { get; set; }
+        public string ValidTo { get; set; }
+        public string TrainNumber { get; set; }
     }
 }
