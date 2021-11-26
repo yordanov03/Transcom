@@ -1,7 +1,9 @@
 ﻿using PSITranscom.Models;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Transcom.Factories.TimetableFactory;
 using static Transcom.Constants;
+using PSITranscom.Models;
 
 namespace Transcom.Parsers
 {
@@ -10,7 +12,8 @@ namespace Transcom.Parsers
 
         public static List<TimeTable> Parse(string[] runningDaysInput)
         {
-            var runningDays = new List<TimeTable>();
+            var timetables = new List<TimeTable>();
+            var timetableFactory = new TimetableFactory();
 
             Regex rgx = new Regex(RegexPatternConstants.TimetableParserRegexExpression);
 
@@ -18,16 +21,20 @@ namespace Transcom.Parsers
             {
                 foreach (Match match in rgx.Matches(day))
                 {
-                    var runningDay = new TimeTable(
-                       match.Groups[1].Value,
-                       match.Groups[2].Value,
-                       match.Groups[3].Value,
-                       match.Groups[4].Value);
-                    runningDays.Add(runningDay);
+
+                    var timetable = (TimeTable)timetableFactory
+                        .WithValidFrom(match.Groups[1].Value)
+                        .WithRunningCode(match.Groups[2].Value)
+                        .WithValidTo(match.Groups[3].Value)
+                        .WithTrainNumber(match.Groups[4].Value)
+                        .Build();
+
+
+                    timetables.Add(timetable);
                 }
             }
 
-            return runningDays;
+            return timetables;
         }
     }
 }
