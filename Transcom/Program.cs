@@ -13,18 +13,21 @@ namespace Transcom
     {
         static void Main(string[] args)
         {
-            var runningCalendar = FileReader.ImportRunningCalendarFromFile();
-            var runningDays = FileReader.ImportRunningDayFromFile();
-            var timeTable = FileReader.ImportTimeTableFromFile();
+            
+            var timetable = FileReader.ImportTimetableFromFile();
+            var runningDays = FileReader.ImportRunningDaysFromFile();
+            var schedule = FileReader.ImportScheduleFromFile();
 
-            var parsedRunningDays = RunningDayParser.Parse(runningDays);
-            var parsedRunningCalendar = RunningCalendarParser.Parse(runningCalendar, parsedRunningDays.Select(d=>d.RunningCode).Distinct().ToArray());
-            var parsedTimetable = TimeTableParser.Parse(timeTable, parsedRunningDays.Select(d=>d.TrainNumber).ToArray());
+            var parsedTimetable = RunningDayParser.Parse(timetable);
+            var parsedRunningDays = RunningCalendarParser.Parse(runningDays, parsedTimetable.Select(d=>d.RunningCode).Distinct().ToArray());
+            var parsedSchedule = TimeTableParser.Parse(timetable, parsedTimetable.Select(d=>d.TrainNumber).ToArray());
 
+            var scheduleBuilder = new JsonTrainSchedulerBuilder();
+            scheduleBuilder.BuildObject(parsedTimetable, parsedRunningDays, parsedSchedule);
 
 
             var fileBuilder = new JsonFileCreator();
-            fileBuilder.CreateJsonFile(parsedRunningCalendar, "somename");
+            fileBuilder.CreateJsonFile(parsedTimetable, "somename");
 
             Console.WriteLine("fuck");
         }

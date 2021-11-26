@@ -11,9 +11,10 @@ namespace Transcom
     public class JsonTrainSchedulerBuilder
     {
         public List<TrainScheduleDto> BuildObject(
-            List<Schedule> schedule,
+            List<TimeTable> timetables,
             List<RunningDay> runningDay,
-            List<TimeTable> timetables)
+            List<Schedule> schedule
+            )
         {
             var trainSchedules = new List<TrainScheduleDto>();
 
@@ -36,9 +37,15 @@ namespace Transcom
 
             //}
 
-            foreach (var trainNumber in collection)
+            foreach (var trainNumber in schedule.Select(rd => rd.TrainNumber))
             {
+                //Get timetable and running day code based on train number
+                var trainTimetable = timetables.Where(t => t.TrainNumber == trainNumber).ToList();
 
+                foreach (var runningCode in trainTimetable.Where(tt=>tt.RunningCode == ))
+                {
+
+                }
             }
 
             return trainSchedules;
