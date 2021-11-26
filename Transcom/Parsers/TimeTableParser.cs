@@ -1,19 +1,15 @@
 ﻿using PSITranscom.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using static Transcom.Constants;
 
 namespace Transcom.Parsers
 {
     public class TimeTableParser
     {
-        public static List<Timetable> Parse(string[] timeTableInput)
+        public static List<Schedule> Parse(string[] timeTableInput, int[] trainNumbers)
         {
-            var parsedTimeTables = new List<Timetable>();
+            var parsedTimeTables = new List<Schedule>();
 
             Regex rgx = new Regex(RegexPatternConstants.TimetableParserRegularExpression);
 
@@ -21,14 +17,22 @@ namespace Transcom.Parsers
             {
                 foreach (Match match in rgx.Matches(timetable))
                 {
-                    var parsedtimetable = new Timetable(
-                        int.Parse(match.Groups[1].Value),
-                        int.Parse(match.Groups[2].Value),
-                        match.Groups[3].Value,
-                        match.Groups[4].Value,
-                        match.Groups[5].Value);
+                    var parsedTrainNumber = int.Parse(match.Groups[2].Value);
 
-                    parsedTimeTables.Add(parsedtimetable);
+                    foreach (var trainNumber in trainNumbers)
+                    {
+                        if (trainNumber == parsedTrainNumber)
+                        {
+                            var parsedtimetable = new Schedule(
+                            int.Parse(match.Groups[1].Value),
+                            parsedTrainNumber,
+                            match.Groups[3].Value,
+                            match.Groups[4].Value,
+                            match.Groups[5].Value);
+
+                            parsedTimeTables.Add(parsedtimetable);
+                        }
+                    }
                 }
             }
 

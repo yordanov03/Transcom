@@ -7,9 +7,9 @@ namespace Transcom.Parsers
 {
     public class RunningCalendarParser
     {
-        public static List<RunningCalendar> Parse(string[] runningCalendarInput)
+        public static List<RunningDay> Parse(string[] runningCalendarInput, int[] runningCodes)
         {
-            var runningCalendar = new List<RunningCalendar>();
+            var runningCalendar = new List<RunningDay>();
             var dateParser = new DateParser();
 
             Regex rgx = new Regex(RegexPatternConstants.CalendarParserRegexExpression);
@@ -18,11 +18,21 @@ namespace Transcom.Parsers
             {
                 foreach (Match match in rgx.Matches(calendar))
                 {
-                    var parsedRunningCalendar = new RunningCalendar(
-                       int.Parse(match.Groups[1].Value),
-                       dateParser.ParseDate(match.Groups[2].Value));
+                    foreach (var code in runningCodes)
+                    {
+                        var dailyRunningCode = int.Parse(match.Groups[1].Value);
 
-                    runningCalendar.Add(parsedRunningCalendar);
+                        if (code == dailyRunningCode)
+                        {
+
+                            var parsedRunningCalendar = new RunningDay(
+                            int.Parse(match.Groups[1].Value),
+                            dateParser.ParseDate(match.Groups[2].Value));
+
+                            runningCalendar.Add(parsedRunningCalendar);
+                        }
+                    }
+
                 }
             }
 

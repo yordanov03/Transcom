@@ -2,9 +2,9 @@
 
 namespace PSITranscom.Models
 {
-    public class RunningCalendar
+    public class RunningDay
     {
-        public RunningCalendar(
+        public RunningDay(
             int runningDayCode,
             DateTime runningDate)
         {

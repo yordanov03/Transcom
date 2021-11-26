@@ -5,7 +5,7 @@ using System.IO;
 
 namespace Transcom
 {
-    public class JsonFileBuilder
+    public class JsonFileCreator
     {
         public void CreateJsonFile<T>(IEnumerable<T> collection, string numberOfTram)
         {

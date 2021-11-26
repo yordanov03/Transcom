@@ -8,9 +8,9 @@ namespace Transcom.Parsers
     public static class RunningDayParser
     {
 
-        public static List<TrainRunningDay> Parse(string[] runningDaysInput)
+        public static List<TimeTable> Parse(string[] runningDaysInput)
         {
-            var runningDays = new List<TrainRunningDay>();
+            var runningDays = new List<TimeTable>();
             var dateParser = new DateParser();
 
             Regex rgx = new Regex(RegexPatternConstants.DayParserRegexExpression);
@@ -19,7 +19,7 @@ namespace Transcom.Parsers
             {
                 foreach (Match match in rgx.Matches(day))
                 {
-                    var runningDay = new TrainRunningDay(
+                    var runningDay = new TimeTable(
                        dateParser.ParseDate(match.Groups[1].Value),
                        int.Parse(match.Groups[2].Value),
                        dateParser.ParseDate(match.Groups[3].Value),

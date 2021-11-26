@@ -1,36 +1,24 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
 
 namespace PSITranscom.Models
 {
-    public class Timetable
+    public class TimeTable
     {
-        public Timetable(
-            int sequenceNumber,
-            int trainNumber,
-            string locationCode,
-            string arrivalTime,
-            string departureTime)
+        public TimeTable(
+            DateTime validFrom,
+            int runningCode,
+            DateTime validTo,
+            int trainNumber)
         {
-            this.SequenceNumber = sequenceNumber;
+            this.ValidFrom = validFrom;
+            this.RunningCode = runningCode;
+            this.ValidTo = validTo;
             this.TrainNumber = trainNumber;
-            this.LocationCode = locationCode;
-            this.ArrivalTime = arrivalTime;
-            this.DepartureTime = departureTime;
         }
-        [MinLength(1)]
-        [MaxLength(5)]
-        public int SequenceNumber { get; set; }
-        [MinLength(1)]
-        [MaxLength(4)]
+
+        public DateTime ValidFrom { get; set; }
+        public int RunningCode { get; set; }
+        public DateTime ValidTo { get; set; }
         public int TrainNumber { get; set; }
-        [MinLength(1)]
-        [MaxLength(5)]
-        public string LocationCode { get; set; }
-        [MinLength(1)]
-        [MaxLength(4)]
-        public string ArrivalTime { get; set; }
-        [MinLength(1)]
-        [MaxLength(5)]
-        public string DepartureTime { get; set; }
     }
 }
