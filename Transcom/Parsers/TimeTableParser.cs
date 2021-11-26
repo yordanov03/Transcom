@@ -5,38 +5,29 @@ using static Transcom.Constants;
 
 namespace Transcom.Parsers
 {
-    public class TimeTableParser
+    public static class TimetableParser
     {
-        public static List<Schedule> Parse(string[] timeTableInput, string[] trainNumbers)
+
+        public static List<TimeTable> Parse(string[] runningDaysInput)
         {
-            var parsedTimeTables = new List<Schedule>();
+            var runningDays = new List<TimeTable>();
 
-            Regex rgx = new Regex(RegexPatternConstants.TimetableParserRegularExpression);
+            Regex rgx = new Regex(RegexPatternConstants.TimetableParserRegexExpression);
 
-            foreach (var timetable in timeTableInput)
+            foreach (var day in runningDaysInput)
             {
-                foreach (Match match in rgx.Matches(timetable))
+                foreach (Match match in rgx.Matches(day))
                 {
-                    var parsedTrainNumber = match.Groups[2].Value;
-
-                    foreach (var trainNumber in trainNumbers)
-                    {
-                        if (trainNumber == parsedTrainNumber)
-                        {
-                            var parsedtimetable = new Schedule(
-                            match.Groups[1].Value,
-                            parsedTrainNumber,
-                            match.Groups[3].Value,
-                            match.Groups[4].Value,
-                            match.Groups[5].Value);
-
-                            parsedTimeTables.Add(parsedtimetable);
-                        }
-                    }
+                    var runningDay = new TimeTable(
+                       match.Groups[1].Value,
+                       match.Groups[2].Value,
+                       match.Groups[3].Value,
+                       match.Groups[4].Value);
+                    runningDays.Add(runningDay);
                 }
             }
 
-            return parsedTimeTables;
+            return runningDays;
         }
     }
 }

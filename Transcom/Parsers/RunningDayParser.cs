@@ -5,29 +5,37 @@ using static Transcom.Constants;
 
 namespace Transcom.Parsers
 {
-    public static class RunningDayParser
+    public class RunningDayParser
     {
-
-        public static List<TimeTable> Parse(string[] runningDaysInput)
+        public static List<RunningDay> Parse(string[] runningCalendarInput, string[] runningCodes)
         {
-            var runningDays = new List<TimeTable>();
+            var runningCalendar = new List<RunningDay>();
 
             Regex rgx = new Regex(RegexPatternConstants.DayParserRegexExpression);
 
-            foreach (var day in runningDaysInput)
+            foreach (var calendar in runningCalendarInput)
             {
-                foreach (Match match in rgx.Matches(day))
+                foreach (Match match in rgx.Matches(calendar))
                 {
-                    var runningDay = new TimeTable(
-                       match.Groups[1].Value,
-                       match.Groups[2].Value,
-                       match.Groups[3].Value,
-                       match.Groups[4].Value);
-                    runningDays.Add(runningDay);
+                    foreach (var code in runningCodes)
+                    {
+                        var dailyRunningCode = match.Groups[1].Value;
+
+                        if (code == dailyRunningCode)
+                        {
+
+                            var parsedRunningCalendar = new RunningDay(
+                            match.Groups[1].Value,
+                            match.Groups[2].Value);
+
+                            runningCalendar.Add(parsedRunningCalendar);
+                        }
+                    }
+
                 }
             }
 
-            return runningDays;
+            return runningCalendar;
         }
     }
 }

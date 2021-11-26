@@ -42,10 +42,7 @@ namespace Transcom
                 //Get timetable and running day code based on train number
                 var trainTimetable = timetables.Where(t => t.TrainNumber == trainNumber).ToList();
 
-                foreach (var runningCode in trainTimetable.Where(tt=>tt.RunningCode == ))
-                {
 
-                }
             }
 
             return trainSchedules;

@@ -4,9 +4,9 @@
     {
         public static class RegexPatternConstants
         {
-            public const string DayParserRegexExpression = @"(\d{8})(\d{4})(\d{8})(\d{4})";
-            public const string CalendarParserRegexExpression = @"(\d{4})(\d{8})";
-            public const string TimetableParserRegularExpression = @"(\d{5})(\d{4})(\d{5})(....)(....)*";
+            public const string TimetableParserRegexExpression = @"(\d{8})(\d{4})(\d{8})(\d{4})";
+            public const string DayParserRegexExpression = @"(\d{4})(\d{8})";
+            public const string ScheduleParserRegularExpression = @"(\d{5})(\d{4})(\d{5})(....)(....)*";
         }
     }
 }

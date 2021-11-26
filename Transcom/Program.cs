@@ -18,9 +18,9 @@ namespace Transcom
             var runningDays = FileReader.ImportRunningDaysFromFile();
             var schedule = FileReader.ImportScheduleFromFile();
 
-            var parsedTimetable = RunningDayParser.Parse(timetable);
-            var parsedRunningDays = RunningCalendarParser.Parse(runningDays, parsedTimetable.Select(d=>d.RunningCode).Distinct().ToArray());
-            var parsedSchedule = TimeTableParser.Parse(timetable, parsedTimetable.Select(d=>d.TrainNumber).ToArray());
+            var parsedTimetable = TimetableParser.Parse(timetable);
+            var parsedRunningDays = RunningDayParser.Parse(runningDays, parsedTimetable.Select(d=>d.RunningCode).Distinct().ToArray());
+            var parsedSchedule = ScheduleParser.Parse(schedule, parsedTimetable.Select(d=>d.TrainNumber).ToArray());
 
             var scheduleBuilder = new JsonTrainSchedulerBuilder();
             scheduleBuilder.BuildObject(parsedTimetable, parsedRunningDays, parsedSchedule);
