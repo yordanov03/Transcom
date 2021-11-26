@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using PSITranscom.Models;
+using System.Collections.Generic;
 
 namespace Transcom.Dtos
 {
@@ -8,16 +9,16 @@ namespace Transcom.Dtos
             string trainNumber,
             string validFrom,
             string validTo,
-            Dictionary<string, List<DailyScheduleDto>> dailySchedules)
+            List<Schedule> scheduledStops)
         {
             this.TrainNumber = trainNumber;
             this.ValidTo = validTo;
             this.ValidFrom = validFrom;
-            this.DailySchedules = new Dictionary<string, DailyScheduleDto>();
+            this.ScheduledStops = scheduledStops;
         }
         public string TrainNumber { get; set; }
         public string ValidFrom { get; set; }
         public string ValidTo { get; set; }
-        public Dictionary<string, DailyScheduleDto> DailySchedules { get; set; }
+        public List<Schedule> ScheduledStops { get; set; } = new List<Schedule>();
     }
 }

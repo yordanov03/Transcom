@@ -18,29 +18,18 @@ namespace Transcom
         {
             var trainSchedules = new List<TrainScheduleDto>();
 
-            //foreach (var trainNumber in trainRunningDays.Select(rd=>rd.TrainNumber))
-            //{
-            //    var filteredTimeTable = timetable.Where(t => t.TrainNumber == trainNumber).ToList();
-
-            //    foreach (var route in filteredTimeTable)
-            //    {
-            //        //var trainSchedule = new TrainSchedule(
-            //        //    route.SequenceNumber,
-            //        //    route.TrainNumber,
-            //        //    route.LocationCode,
-            //        //    route.ArrivalTime,
-            //        //    route.DepartureTime);
-
-            //        //trainSchedules.Add(trainSchedule);
-            //    }
-
-
-            //}
-
             foreach (var timetable in timetables)
             {
-                var selectedSchedule = schedule.Where(s => s.TrainNumber == timetable.TrainNumber).ToList();
+                var selectedSchedule = schedule.Where(s => s.TrainNumber == timetable.TrainNumber).OrderBy(s=>s.SequenceNumber).ToList();
                 var selectedRunningDays = runningDay.Where(rd => rd.RunningDayCode == timetable.RunningCode).ToList();
+
+                var trainScheduleCompraised = new TrainScheduleDto(
+                    timetable.TrainNumber,
+                    timetable.ValidFrom,
+                    timetable.ValidTo,
+                    selectedSchedule);
+
+                trainSchedules.Add(trainScheduleCompraised);
             }
 
             return trainSchedules;

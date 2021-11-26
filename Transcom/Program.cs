@@ -1,11 +1,7 @@
-﻿using Newtonsoft.Json;
-using PSITranscom;
+﻿using PSITranscom;
 using System;
-using System.IO;
 using System.Linq;
-using System.Text.Json;
 using Transcom.Parsers;
-using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 namespace Transcom
 {
@@ -13,21 +9,21 @@ namespace Transcom
     {
         static void Main(string[] args)
         {
-            
+
             var timetable = FileReader.ImportTimetableFromFile();
             var runningDays = FileReader.ImportRunningDaysFromFile();
             var schedule = FileReader.ImportScheduleFromFile();
 
             var parsedTimetable = TimetableParser.Parse(timetable);
-            var parsedRunningDays = RunningDayParser.Parse(runningDays, parsedTimetable.Select(d=>d.RunningCode).Distinct().ToArray());
-            var parsedSchedule = ScheduleParser.Parse(schedule, parsedTimetable.Select(d=>d.TrainNumber).ToArray());
+            var parsedRunningDays = RunningDayParser.Parse(runningDays, parsedTimetable.Select(d => d.RunningCode).Distinct().ToArray());
+            var parsedSchedule = ScheduleParser.Parse(schedule, parsedTimetable.Select(d => d.TrainNumber).ToArray());
 
             var scheduleBuilder = new JsonTrainSchedulerBuilder();
-            scheduleBuilder.BuildObject(parsedTimetable, parsedRunningDays, parsedSchedule);
+            var schedulePerTrain = scheduleBuilder.BuildObject(parsedTimetable, parsedRunningDays, parsedSchedule);
 
 
             var fileBuilder = new JsonFileCreator();
-            fileBuilder.CreateJsonFile(parsedTimetable, "somename");
+            fileBuilder.CreateJsonFile(schedulePerTrain);
 
             Console.WriteLine("fuck");
         }
