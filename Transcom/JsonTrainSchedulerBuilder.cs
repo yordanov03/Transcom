@@ -37,12 +37,10 @@ namespace Transcom
 
             //}
 
-            foreach (var trainNumber in schedule.Select(rd => rd.TrainNumber))
+            foreach (var timetable in timetables)
             {
-                //Get timetable and running day code based on train number
-                var trainTimetable = timetables.Where(t => t.TrainNumber == trainNumber).ToList();
-
-
+                var selectedSchedule = schedule.Where(s => s.TrainNumber == timetable.TrainNumber).ToList();
+                var selectedRunningDays = runningDay.Where(rd => rd.RunningDayCode == timetable.RunningCode).ToList();
             }
 
             return trainSchedules;

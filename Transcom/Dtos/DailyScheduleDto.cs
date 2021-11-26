@@ -3,21 +3,18 @@
     public class DailyScheduleDto
     {
         public DailyScheduleDto(
-            int sequenceNumber,
+            string sequenceNumber,
             string locationCode,
             string arrivalTime,
-            string departureTime,
-            string runningDate)
+            string departureTime)
         {
             this.SequenceNumber = sequenceNumber;
             this.LocationCode = locationCode;
             this.ArrivalTime = arrivalTime;
             this.DepartureTime = departureTime;
-            this.RunningDate = runningDate;
         }
-        public string RunningDate { get; set; }
 
-        public int SequenceNumber { get; set; }
+        public string SequenceNumber { get; set; }
 
         public string LocationCode { get; set; }
 
