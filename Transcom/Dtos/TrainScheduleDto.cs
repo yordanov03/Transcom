@@ -1,15 +1,17 @@
-﻿using PSITranscom.Models;
+﻿using AutoMapper;
+using PSITranscom.Models;
 using System.Collections.Generic;
+using Transcom.Mapper;
 
 namespace Transcom.Dtos
 {
-    public class TrainScheduleDto
+    public class TrainScheduleDto : IMapFrom<TimeTable>
     {
         public TrainScheduleDto(
             string trainNumber,
             string validFrom,
             string validTo,
-            List<Schedule> scheduledStops)
+            List<ScheduledStopDto> scheduledStops)
         {
             this.TrainNumber = trainNumber;
             this.ValidTo = validTo;
@@ -19,6 +21,11 @@ namespace Transcom.Dtos
         public string TrainNumber { get; set; }
         public string ValidFrom { get; set; }
         public string ValidTo { get; set; }
-        public List<Schedule> ScheduledStops { get; set; } = new List<Schedule>();
+        public List<ScheduledStopDto> ScheduledStops { get; set; } = new List<ScheduledStopDto>();
+
+        public void Mapping(Profile mapper)
+        {
+            mapper.CreateMap<TimeTable, TrainScheduleDto>();
+        }
     }
 }

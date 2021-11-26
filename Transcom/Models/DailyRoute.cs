@@ -2,9 +2,9 @@
 
 namespace PSITranscom.Models
 {
-    public class RunningDay
+    public class DailyRoute
     {
-        public RunningDay(
+        public DailyRoute(
             string runningDayCode,
             string runningDate)
         {

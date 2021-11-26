@@ -1,15 +1,18 @@
 ﻿using PSITranscom.Models;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Transcom.Factories.ScheduleFactory;
+using Transcom.Factories.TimetableFactory;
 using static Transcom.Constants;
 
 namespace Transcom.Parsers
 {
-    public class ScheduleParser
+    public static class ScheduleParser
     {
         public static List<Schedule> Parse(string[] timeTableInput, string[] trainNumbers)
         {
-            var parsedTimeTables = new List<Schedule>();
+            var parsedSchedules = new List<Schedule>();
+            var scheduleFactory = new ScheduleFactory();
 
             Regex rgx = new Regex(RegexPatternConstants.ScheduleParserRegularExpression);
 
@@ -23,20 +26,29 @@ namespace Transcom.Parsers
                     {
                         if (trainNumber == parsedTrainNumber)
                         {
-                            var parsedtimetable = new Schedule(
-                            match.Groups[1].Value,
-                            parsedTrainNumber,
-                            match.Groups[3].Value,
-                            match.Groups[4].Value,
-                            match.Groups[5].Value);
+                            //var parsedtimetable = new Schedule(
+                            //match.Groups[1].Value,
+                            //parsedTrainNumber,
+                            //match.Groups[3].Value,
+                            //match.Groups[4].Value,
+                            //match.Groups[5].Value);
 
-                            parsedTimeTables.Add(parsedtimetable);
+                            var parsedSchedule = (Schedule)scheduleFactory
+                                .WithSequenceNumber(match.Groups[1].Value)
+                                .WithTrainNumber(parsedTrainNumber)
+                                .WithLoctionCode(match.Groups[3].Value)
+                                .WithArrivalTime(match.Groups[4].Value)
+                                .WithDepartureTime(match.Groups[5].Value)
+                                .Build();
+
+
+                            parsedSchedules.Add(parsedSchedule);
                         }
                     }
                 }
             }
 
-            return parsedTimeTables;
+            return parsedSchedules;
         }
     }
 }

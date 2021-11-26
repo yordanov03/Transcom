@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace PSITranscom.Models
+﻿namespace PSITranscom.Models
 {
     public class TimeTable
     {
