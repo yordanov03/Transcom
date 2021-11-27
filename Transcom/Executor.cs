@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using PSITranscom;
+﻿using PSITranscom;
 using System.Linq;
 using Transcom.Parsers;
 
@@ -9,18 +8,18 @@ namespace Transcom
     {
         public static void Execute()
         {
-            var timetable = FileReader.ImportTimetableFromFile();
-            var runningDays = FileReader.ImportRunningDaysFromFile();
             var schedule = FileReader.ImportScheduleFromFile();
+            var dailyRoute = FileReader.ImportDailyRouteFromFile();
+            var timetable = FileReader.ImportTimetableFromFile();
 
-            var parsedTimetable = TimetableParser.Parse(timetable);
+            var parsedSchedule = ScheduleParser.Parse(schedule);
 
             //Getting only the daily route that matches the running code
-            var parsedRunningDays = RunningDayParser.Parse(runningDays, parsedTimetable.Select(d => d.RunningCode).Distinct().ToArray());
-            var parsedSchedule = ScheduleParser.Parse(schedule, parsedTimetable.Select(d => d.TrainNumber).ToArray());
+            var parsedDailyRoute = DailyRouteParser.Parse(dailyRoute, parsedSchedule.Select(d => d.RunningCode).Distinct().ToArray());
+            var parsedTimetable = TimetableParser.Parse(dailyRoute, parsedSchedule.Select(d => d.TrainNumber).ToArray());
 
             var scheduleBuilder = new JsonTrainSchedulerBuilder();
-            var schedulePerTrain = scheduleBuilder.BuildObject(parsedTimetable, parsedRunningDays, parsedSchedule);
+            var schedulePerTrain = scheduleBuilder.BuildObject(parsedSchedule, parsedDailyRoute, parsedTimetable);
 
 
             var fileBuilder = new JsonFileCreator();

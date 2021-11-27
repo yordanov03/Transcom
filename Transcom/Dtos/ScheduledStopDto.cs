@@ -3,7 +3,7 @@ using Transcom.Mapper;
 
 namespace Transcom.Dtos
 {
-    public class ScheduledStopDto : IMapFrom<Schedule>
+    public class ScheduledStopDto : IMapFrom<Timetable>
     {
         public string SequenceNumber { get; set; }
 

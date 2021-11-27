@@ -36,7 +36,7 @@ namespace Transcom.Mapper
 
         public MappingProfile()
         {
-            CreateMap<Schedule, ScheduledStopDto>();
+            CreateMap<Timetable, ScheduledStopDto>();
         }
     }
 }

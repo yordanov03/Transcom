@@ -1,21 +1,23 @@
-﻿namespace PSITranscom
+﻿using static Transcom.Constants.FileLocation;
+
+namespace PSITranscom
 {
     public static class FileReader
     {
-        public static string[] ImportRunningDaysFromFile()
+        public static string[] ImportDailyRouteFromFile()
         {
-            string[] lines = System.IO.File.ReadAllLines(@"C:\Users\sveto\source\repos\Transcom\Transcom\Source\A32_Sample SPOT Table TOMSCALENDAR.txt");
+            string[] lines = System.IO.File.ReadAllLines(DailyRouteFileLocationString);
             return lines;
         }
-        public static string[] ImportTimetableFromFile()
+        public static string[] ImportScheduleFromFile()
         {
-            string[] lines = System.IO.File.ReadAllLines(@"C:\Users\sveto\source\repos\Transcom\Transcom\Source\A34_Sample SPOT Table TOMSTRAINHEAD.txt");
+            string[] lines = System.IO.File.ReadAllLines(ScheduleFileLocationString);
             return lines;
         }
 
-        public static string[] ImportScheduleFromFile()
+        public static string[] ImportTimetableFromFile()
         {
-            string[] lines = System.IO.File.ReadAllLines(@"C:\Users\sveto\source\repos\Transcom\Transcom\Source\A33_Sample SPOT Table TOMSTRAINDET.txt");
+            string[] lines = System.IO.File.ReadAllLines(DailyRouteFileLocationString);
             return lines;
         }
     }

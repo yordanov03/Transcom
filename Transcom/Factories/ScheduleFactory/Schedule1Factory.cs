@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Transcom.Factories.ScheduleFactory
 {
-    internal class ScheduleFactory : IScheduleFactory
+    internal class Schedule1Factory : ISchedule1Factory
     {
         private string sequenceNumber;
         private string trainNumber;
@@ -15,36 +15,36 @@ namespace Transcom.Factories.ScheduleFactory
         private string arrivalTime;
         private string departureTime;
 
-        public IScheduleFactory WithArrivalTime(string arrivalTime)
+        public ISchedule1Factory WithArrivalTime(string arrivalTime)
         {
             this.arrivalTime = arrivalTime;
             return this;
         }
 
-        public IScheduleFactory WithDepartureTime(string departureTime)
+        public ISchedule1Factory WithDepartureTime(string departureTime)
         {
             this.departureTime = departureTime;
             return this;
         }
 
-        public IScheduleFactory WithLoctionCode(string locationCode)
+        public ISchedule1Factory WithLoctionCode(string locationCode)
         {
             this.locationCode = locationCode;
             return this;
         }
 
-        public IScheduleFactory WithSequenceNumber(string sequenceNumber)
+        public ISchedule1Factory WithSequenceNumber(string sequenceNumber)
         {
             this.sequenceNumber = sequenceNumber;
             return this;
         }
 
-        public IScheduleFactory WithTrainNumber(string trainNumber)
+        public ISchedule1Factory WithTrainNumber(string trainNumber)
         {
             this.trainNumber = trainNumber;
             return this;
         }
-        public object Build() => new Schedule(
+        public object Build() => new Timetable(
             sequenceNumber,
             trainNumber,
             locationCode,

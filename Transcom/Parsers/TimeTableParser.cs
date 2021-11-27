@@ -1,40 +1,63 @@
 ﻿using PSITranscom.Models;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Transcom.Exceptions;
+using Transcom.Factories.ScheduleFactory;
 using Transcom.Factories.TimetableFactory;
 using static Transcom.Constants;
-using PSITranscom.Models;
 
 namespace Transcom.Parsers
 {
     public static class TimetableParser
     {
-
-        public static List<TimeTable> Parse(string[] runningDaysInput)
+        public static List<Timetable> Parse(string[] timeTableInput, string[] trainNumbers)
         {
-            var timetables = new List<TimeTable>();
-            var timetableFactory = new TimetableFactory();
+            var parsedSchedules = new List<Timetable>();
+            var scheduleFactory = new Schedule1Factory();
 
-            Regex rgx = new Regex(RegexPatternConstants.TimetableParserRegexExpression);
-
-            foreach (var day in runningDaysInput)
+            try
             {
-                foreach (Match match in rgx.Matches(day))
+                Regex rgx = new Regex(RegexPatternConstants.TimetableParserRegularExpression);
+
+                foreach (var timetable in timeTableInput)
                 {
+                    foreach (Match match in rgx.Matches(timetable))
+                    {
+                        var parsedTrainNumber = match.Groups[2].Value;
 
-                    var timetable = (TimeTable)timetableFactory
-                        .WithValidFrom(match.Groups[1].Value)
-                        .WithRunningCode(match.Groups[2].Value)
-                        .WithValidTo(match.Groups[3].Value)
-                        .WithTrainNumber(match.Groups[4].Value)
-                        .Build();
+                        foreach (var trainNumber in trainNumbers)
+                        {
+                            if (trainNumber == parsedTrainNumber)
+                            {
+                                //var parsedtimetable = new Schedule(
+                                //match.Groups[1].Value,
+                                //parsedTrainNumber,
+                                //match.Groups[3].Value,
+                                //match.Groups[4].Value,
+                                //match.Groups[5].Value);
+
+                                var parsedSchedule = (Timetable)scheduleFactory
+                                    .WithSequenceNumber(match.Groups[1].Value)
+                                    .WithTrainNumber(parsedTrainNumber)
+                                    .WithLoctionCode(match.Groups[3].Value)
+                                    .WithArrivalTime(match.Groups[4].Value)
+                                    .WithDepartureTime(match.Groups[5].Value)
+                                    .Build();
 
 
-                    timetables.Add(timetable);
+                                parsedSchedules.Add(parsedSchedule);
+                            }
+                        }
+                    }
                 }
-            }
 
-            return timetables;
+                return parsedSchedules;
+            }
+            catch
+            {
+
+                throw new TimetableParserException($"Could not parse {FileLocation.TimetableFileLocationString}");
+            }
         }
     }
 }

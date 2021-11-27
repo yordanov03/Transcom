@@ -5,7 +5,7 @@ using Transcom.Mapper;
 
 namespace Transcom.Dtos
 {
-    public class TrainScheduleDto : IMapFrom<TimeTable>
+    public class TrainScheduleDto : IMapFrom<Schedule>
     {
         public TrainScheduleDto(
             string trainNumber,
@@ -25,7 +25,7 @@ namespace Transcom.Dtos
 
         public void Mapping(Profile mapper)
         {
-            mapper.CreateMap<TimeTable, TrainScheduleDto>();
+            mapper.CreateMap<Schedule, TrainScheduleDto>();
         }
     }
 }

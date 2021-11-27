@@ -3,38 +3,38 @@ using System;
 
 namespace Transcom.Factories.TimetableFactory
 {
-    internal class TimetableFactory : ITimetableFactory
+    internal class ScheduleFactory : IScheduleFactory
     {
         private string validFrom;
         private string runningCode;
         private string validTo;
         private string trainNumber;
 
-        public ITimetableFactory WithRunningCode(string runningCode)
+        public IScheduleFactory WithRunningCode(string runningCode)
         {
             this.runningCode = runningCode;
             return this;
         }
 
-        public ITimetableFactory WithTrainNumber(string trainNumber)
+        public IScheduleFactory WithTrainNumber(string trainNumber)
         {
             this.trainNumber = trainNumber;
             return this;
         }
 
-        public ITimetableFactory WithValidFrom(string validFrom)
+        public IScheduleFactory WithValidFrom(string validFrom)
         {
             this.validFrom = validFrom;
             return this;
         }
 
-        public ITimetableFactory WithValidTo(string validTo)
+        public IScheduleFactory WithValidTo(string validTo)
         {
             this.validTo = validTo;
             return this;
         }
 
-        public object Build() => new TimeTable(
+        public object Build() => new Schedule(
             validFrom,
             runningCode,
             validTo,

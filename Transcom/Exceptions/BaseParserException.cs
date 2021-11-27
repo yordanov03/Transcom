@@ -2,7 +2,7 @@
 
 namespace Transcom.Exceptions
 {
-    public abstract class BaseModelException : Exception
+    public abstract class BaseParserException : Exception
     {
         private string error;
 

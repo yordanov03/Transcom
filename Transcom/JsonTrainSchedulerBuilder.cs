@@ -9,9 +9,9 @@ namespace Transcom
     public class JsonTrainSchedulerBuilder
     {
         public List<TrainScheduleDto> BuildObject(
-            List<TimeTable> timetables,
+            List<Schedule> timetables,
             List<DailyRoute> runningDay,
-            List<Schedule> schedule
+            List<Timetable> schedule
             )
         {
 
