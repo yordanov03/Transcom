@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PSITranscom;
 using System.Reflection;
 
 namespace Transcom
@@ -12,8 +12,9 @@ namespace Transcom
             return Host.CreateDefaultBuilder(args)
                 .ConfigureServices((_, services) =>
                     services.AddAutoMapper(Assembly.GetExecutingAssembly())
-                    .AddTransient<Executor>());
-            
+                    .AddTransient<Executor>()
+                    .AddTransient<IFileReader, FileReader>());
+
         }
     }
 }

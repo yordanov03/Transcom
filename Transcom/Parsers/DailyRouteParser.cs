@@ -49,7 +49,7 @@ namespace Transcom.Parsers
             catch
             {
 
-                throw new DailyRouteParserException($"Could not parse file {FileLocation.DailyRouteFileLocationString}");
+                throw new ParserException($"Could not parse file {FileLocation.DailyRouteFileLocationString}");
             }
 
         }
