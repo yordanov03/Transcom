@@ -8,6 +8,12 @@ namespace Transcom
 {
     public class JsonTrainSchedulerBuilder
     {
+        private readonly IMapper _mapper;
+
+        public JsonTrainSchedulerBuilder(IMapper mapper)
+        {
+            this._mapper = mapper;   
+        }
         public List<TrainScheduleDto> BuildObject(
             List<Schedule> timetables,
             List<DailyRoute> runningDay,
@@ -21,13 +27,13 @@ namespace Transcom
             {
                 var selectedSchedule = schedule.Where(s => s.TrainNumber == timetable.TrainNumber).OrderBy(s => s.SequenceNumber).ToList();
                 var selectedRunningDays = runningDay.Where(rd => rd.RunningDayCode == timetable.RunningCode).ToList();
-                //var projectedSelectedRunningDays = this._mapper.Map<List<ScheduledStopDto>>(selectedRunningDays);
+                var projectedSelectedRunningDays = this._mapper.Map<List<ScheduledStopDto>>(selectedRunningDays);
 
                 var trainScheduleCompraised = new TrainScheduleDto(
                     timetable.TrainNumber,
                     timetable.ValidFrom,
                     timetable.ValidTo,
-                    selectedRunningDays);
+                    projectedSelectedRunningDays);
 
                 trainSchedules.Add(trainScheduleCompraised);
             }

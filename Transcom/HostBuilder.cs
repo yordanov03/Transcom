@@ -11,7 +11,9 @@ namespace Transcom
         {
             return Host.CreateDefaultBuilder(args)
                 .ConfigureServices((_, services) =>
-                    services.AddAutoMapper(Assembly.GetExecutingAssembly()));
+                    services.AddAutoMapper(Assembly.GetExecutingAssembly())
+                    .AddTransient<Executor>());
+            
         }
     }
 }

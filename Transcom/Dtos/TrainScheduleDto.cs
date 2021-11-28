@@ -7,6 +7,10 @@ namespace Transcom.Dtos
 {
     public class TrainScheduleDto : IMapFrom<Schedule>
     {
+        public TrainScheduleDto()
+        {
+
+        }
         public TrainScheduleDto(
             string trainNumber,
             string validFrom,
