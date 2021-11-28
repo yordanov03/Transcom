@@ -56,7 +56,7 @@ namespace Transcom.Parsers
             catch
             {
 
-                throw new TimetableParserException($"Could not parse {FileLocation.TimetableFileLocationString}");
+                throw new ParserException($"Could not parse {FileLocation.TimetableFileLocationString}");
             }
         }
     }
