@@ -4,6 +4,6 @@ namespace Transcom
 {
     public interface IFileReader
     {
-        string[] ImportFiles();
+        List<string[]> ImportFiles();
     }
 }

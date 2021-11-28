@@ -20,13 +20,15 @@ namespace Transcom
 
         public void Execute()
         {
-            //var schedule = FileReader.ImportScheduleFromFile();
-            //var dailyRoute = FileReader.ImportDailyRouteFromFile();
-            //var timetable = FileReader.ImportTimetableFromFile();
+            var fileData = this._fileReader.ImportFiles();
 
-            var files = this._fileReader.ImportFiles();
+            var schedule = fileData[2];
+            var dailyRoute = fileData[0];
+            var timetable = fileData[1];
 
-            //var parsedSchedule = ScheduleParser.Parse(files[0].ToList());
+
+
+            //var parsedSchedule = ScheduleParser.Parse(schedule);
 
             ////Getting only the daily route that matches the running code
             //var parsedDailyRoute = DailyRouteParser.Parse(dailyRoute, parsedSchedule.Select(d => d.RunningCode).Distinct().ToArray());

@@ -9,6 +9,7 @@ namespace PSITranscom
 {
     public class FileReader : IFileReader
     {
+        private List<string[]> importedData = new List<string[]>();
         //public static string[] ImportDailyRouteFromFile()
         //{
         //    string[] lines = System.IO.File.ReadAllLines(DailyRouteFileLocationString);
@@ -25,12 +26,17 @@ namespace PSITranscom
         //    string[] lines = System.IO.File.ReadAllLines(DailyRouteFileLocationString);
         //    return lines;
         //}
-        public string[] ImportFiles()
+        public List<string[]> ImportFiles()
         {
             try
             {
-                string[] dirs = Directory.GetFiles(@"../../../Source");
-                return dirs;
+                string[] filePaths = Directory.GetFiles(@"../../../Source");
+                foreach (var filePath in filePaths)
+                {
+                    var processedFile = File.ReadAllLines(filePath);
+                    importedData.Add(processedFile);
+                }
+                return importedData;
             }
             catch (Exception e)
             {
