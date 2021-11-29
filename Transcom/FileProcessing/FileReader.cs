@@ -8,22 +8,7 @@ namespace PSITranscom
     public class FileReader : IFileReader
     {
         private List<string[]> importedData = new List<string[]>();
-        //public static string[] ImportDailyRouteFromFile()
-        //{
-        //    string[] lines = System.IO.File.ReadAllLines(DailyRouteFileLocationString);
-        //    return lines;
-        //}
-        //public static string[] ImportScheduleFromFile()
-        //{
-        //    string[] lines = System.IO.File.ReadAllLines(ScheduleFileLocationString);
-        //    return lines;
-        //}
 
-        //public static string[] ImportTimetableFromFile()
-        //{
-        //    string[] lines = System.IO.File.ReadAllLines(DailyRouteFileLocationString);
-        //    return lines;
-        //}
         public List<string[]> ImportFiles()
         {
             try

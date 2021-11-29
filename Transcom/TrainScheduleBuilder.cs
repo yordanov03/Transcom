@@ -6,15 +6,15 @@ using Transcom.Dtos;
 
 namespace Transcom
 {
-    public class JsonTrainSchedulerBuilder
+    public class TrainScheduleBuilder : ITrainScheduleBuilder
     {
         private readonly IMapper _mapper;
 
-        public JsonTrainSchedulerBuilder(IMapper mapper)
+        public TrainScheduleBuilder(IMapper mapper)
         {
             this._mapper = mapper;   
         }
-        public List<TrainScheduleDto> BuildObject(
+        public List<TrainScheduleDto> BuildTrainSchedule(
             List<Schedule> timetables,
             List<DailyRoute> runningDay,
             List<Timetable> schedule

@@ -5,16 +5,16 @@ using Transcom.Dtos;
 
 namespace Transcom
 {
-    public class JsonFileCreator
+    public class JsonFileCreator : IJsonFileCreator
     {
         public void CreateJsonFile(List<TrainScheduleDto> schedulePerTrain)
         {
 
             foreach (var schedule in schedulePerTrain)
             {
-                var x = JsonConvert.SerializeObject(@$"C:\Users\sveto\source\repos\Transcom\Transcom\Output\{schedule.TrainNumber}.json", Formatting.Indented);
+                var output = JsonConvert.SerializeObject(@$"../../../Output/{schedule.TrainNumber}.json", Formatting.Indented);
 
-                using (StreamWriter file = File.CreateText(x))
+                using (StreamWriter file = File.CreateText(output))
                 {
                     var serializer = new JsonSerializer();
                     //serialize object directly into file stream

@@ -25,7 +25,9 @@ namespace Transcom
                     .AddTransient<IParser<Timetable>, TimetableParser<Timetable>>()
                     .AddTransient<IDailyRouteFactory, DailyRouteFactory>()
                     .AddTransient<IScheduleFactory,ScheduleFactory>()
-                    .AddTransient<ITimetableFactory, TimetableFactory>());
+                    .AddTransient<ITimetableFactory, TimetableFactory>()
+                    .AddTransient<ITrainScheduleBuilder, TrainScheduleBuilder>()
+                    .AddTransient<IJsonFileCreator, JsonFileCreator>());
 
         }
 
