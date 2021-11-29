@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transcom", "Transcom\Transcom.csproj", "{E43F398C-DC68-45AB-9CC4-3CCDBB17D3D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PSITranscom", "Transcom\PSITranscom.csproj", "{E43F398C-DC68-45AB-9CC4-3CCDBB17D3D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSITranscom.Tests", "PSITranscom.Tests\PSITranscom.Tests.csproj", "{52A1384C-347C-4BB2-963F-855059C4928F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PSITranscom.Tests", "PSITranscom.Tests\PSITranscom.Tests.csproj", "{52A1384C-347C-4BB2-963F-855059C4928F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
