@@ -14,9 +14,9 @@
             this.TrainNumber = trainNumber;
         }
 
-        public string ValidFrom { get; set; }
-        public string RunningCode { get; set; }
-        public string ValidTo { get; set; }
-        public string TrainNumber { get; set; }
+        public string ValidFrom { get; }
+        public string RunningCode { get; }
+        public string ValidTo { get; }
+        public string TrainNumber { get; }
     }
 }
