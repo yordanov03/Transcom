@@ -12,9 +12,10 @@ namespace Transcom
 
             foreach (var schedule in schedulePerTrain)
             {
-                var output = JsonConvert.SerializeObject(@$"../../../Output/{schedule.TrainNumber}.json", Formatting.Indented);
+                //var output = JsonConvert.SerializeObject(@$"..\..\..\Output\{schedule.TrainNumber}.json", Formatting.Indented);
+                var path = @$"..\..\..\Output\{schedule.TrainNumber}.json";
 
-                using (StreamWriter file = File.CreateText(output))
+                using (StreamWriter file = File.CreateText(path))
                 {
                     var serializer = new JsonSerializer();
                     //serialize object directly into file stream

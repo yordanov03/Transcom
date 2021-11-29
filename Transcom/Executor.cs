@@ -22,7 +22,7 @@ namespace Transcom
             IScheduleParser scheduleParser,
             IParser<DailyRoute> dailyRouteParser,
             IParser<Timetable> timetableParser,
-            TrainScheduleBuilder trainScheduleBuilder,
+            ITrainScheduleBuilder trainScheduleBuilder,
             IJsonFileCreator jsonFileCreator)
         {
             this._mapper = mapper;

@@ -25,9 +25,9 @@ namespace Transcom
 
             foreach (var timetable in timetables)
             {
-                var selectedSchedule = schedule.Where(s => s.TrainNumber == timetable.TrainNumber).OrderBy(s => s.SequenceNumber).ToList();
-                var selectedRunningDays = runningDay.Where(rd => rd.RunningDayCode == timetable.RunningCode).ToList();
-                var projectedSelectedRunningDays = this._mapper.Map<List<ScheduledStopDto>>(selectedRunningDays);
+                var selectedTimetable = schedule.Where(s => s.TrainNumber == timetable.TrainNumber).OrderBy(s => s.SequenceNumber).ToList();
+                var selectedDailyRoute = runningDay.Where(rd => rd.RunningDayCode == timetable.RunningCode).ToList();
+                var projectedSelectedRunningDays = this._mapper.Map<List<Timetable>,List<ScheduledStopDto>>(selectedTimetable);
 
                 var trainScheduleCompraised = new TrainScheduleDto(
                     timetable.TrainNumber,

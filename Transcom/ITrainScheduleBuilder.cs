@@ -6,7 +6,8 @@ namespace Transcom
 {
     public interface ITrainScheduleBuilder
     {
-        List<TrainScheduleDto> BuildTrainSchedule(List<Schedule> timetables,
+        List<TrainScheduleDto> BuildTrainSchedule(
+            List<Schedule> timetables,
             List<DailyRoute> runningDay,
             List<Timetable> schedule);
     }

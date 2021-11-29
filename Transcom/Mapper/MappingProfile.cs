@@ -33,10 +33,5 @@ namespace Transcom.Mapper
                 methodInfo?.Invoke(instance, new object[] { this });
             }
         }
-
-        //public MappingProfile()
-        //{
-        //    CreateMap<Timetable, ScheduledStopDto>();
-        //}
     }
 }
