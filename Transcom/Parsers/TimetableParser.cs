@@ -8,9 +8,9 @@ using static Transcom.Constants;
 
 namespace Transcom.Parsers
 {
-    public static class TimetableParser
+    public class TimetableParser<T> : IParser<Timetable> where T : Timetable
     {
-        public static List<Timetable> Parse(string[] timeTableInput, string[] trainNumbers)
+        public List<Timetable> ParseInput(string[] timeTableInput, string[] trainNumbers)
         {
             var parsedSchedules = new List<Timetable>();
             var scheduleFactory = new Schedule1Factory();
