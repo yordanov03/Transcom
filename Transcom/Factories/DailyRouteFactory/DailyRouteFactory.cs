@@ -2,7 +2,7 @@
 
 namespace Transcom.Factories
 {
-    internal class DailyRouteFactory : IDailyRouteFactory
+    public class DailyRouteFactory : IDailyRouteFactory
     {
         private string dailyRunningCode;
         private string runningDate;

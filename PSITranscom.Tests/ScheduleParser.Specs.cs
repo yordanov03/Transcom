@@ -24,9 +24,9 @@ namespace Transcom.Tests
             Assert.NotNull(parsedSchedule);
             Assert.IsType<List<Schedule>>(parsedSchedule);
             Assert.Equal("01012017", parsedSchedule[0].ValidFrom);
-            Assert.Equal("0100", parsedSchedule[1].RunningCode);
-            Assert.Equal("31122017", parsedSchedule[2].ValidTo);
-            Assert.Equal("0106", parsedSchedule[2].TrainNumber);
+            Assert.Equal("0100", parsedSchedule[0].RunningCode);
+            Assert.Equal("31122017", parsedSchedule[0].ValidTo);
+            Assert.Equal("0106", parsedSchedule[0].TrainNumber);
         }
     }
 }

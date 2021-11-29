@@ -3,7 +3,7 @@ using System;
 
 namespace Transcom.Factories.TimetableFactory
 {
-    internal class ScheduleFactory : IScheduleFactory
+    public class ScheduleFactory : IScheduleFactory
     {
         private string validFrom;
         private string runningCode;
