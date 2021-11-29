@@ -1,24 +1,28 @@
-﻿using System;
-
-namespace PSITranscom.Models
+﻿namespace PSITranscom.Models
 {
-    public class TimeTable
+    public class Timetable
     {
-        public TimeTable(
-            string validFrom,
-            string runningCode,
-            string validTo,
-            string trainNumber)
+        public Timetable(
+            string sequenceNumber,
+            string trainNumber,
+            string locationCode,
+            string arrivalTime,
+            string departureTime)
         {
-            this.ValidFrom = validFrom;
-            this.RunningCode = runningCode;
-            this.ValidTo = validTo;
+            this.SequenceNumber = sequenceNumber;
             this.TrainNumber = trainNumber;
+            this.LocationCode = locationCode;
+            this.ArrivalTime = arrivalTime;
+            this.DepartureTime = departureTime;
         }
+        public string SequenceNumber { get; set; }
 
-        public string ValidFrom { get; set; }
-        public string RunningCode { get; set; }
-        public string ValidTo { get; set; }
         public string TrainNumber { get; set; }
+
+        public string LocationCode { get; set; }
+
+        public string ArrivalTime { get; set; }
+
+        public string DepartureTime { get; set; }
     }
 }
