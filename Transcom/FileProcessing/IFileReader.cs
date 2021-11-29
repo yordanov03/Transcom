@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using PSITranscom.Models;
+using System.Collections.Generic;
 
 namespace Transcom
 {
     public interface IFileReader
     {
-        List<string[]> ImportFiles();
+        FileData ImportFiles();
     }
 }

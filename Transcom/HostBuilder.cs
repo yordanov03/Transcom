@@ -7,6 +7,7 @@ using Transcom.Factories;
 using Transcom.Factories.ScheduleFactory;
 using Transcom.Factories.TimetableFactory;
 using Transcom.Parsers;
+using System;
 
 namespace Transcom
 {
@@ -15,7 +16,7 @@ namespace Transcom
         public static IHostBuilder CreateHostBuilder(string[] args)
         {
             return Host.CreateDefaultBuilder(args)
-                .ConfigureServices((_, services) =>
+                .ConfigureServices((context, services) => {
                     services
                     .AddAutoMapper(Assembly.GetExecutingAssembly())
                     .AddTransient<Executor>()
@@ -24,10 +25,13 @@ namespace Transcom
                     .AddTransient<IParser<DailyRoute>, DailyRouteParser<DailyRoute>>()
                     .AddTransient<IParser<Timetable>, TimetableParser<Timetable>>()
                     .AddTransient<IDailyRouteFactory, DailyRouteFactory>()
-                    .AddTransient<IScheduleFactory,ScheduleFactory>()
+                    .AddTransient<IScheduleFactory, ScheduleFactory>()
                     .AddTransient<ITimetableFactory, TimetableFactory>()
                     .AddTransient<ITrainScheduleBuilder, TrainScheduleBuilder>()
-                    .AddTransient<IJsonFileCreator, JsonFileCreator>());
+                    .AddTransient<IJsonFileCreator, JsonFileCreator>();
+                    services.Configure<FileLocation>(
+                       context.Configuration.GetSection(FileLocation.FilesLocation));
+                });
 
         }
 

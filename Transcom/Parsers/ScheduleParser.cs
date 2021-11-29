@@ -46,7 +46,7 @@ namespace Transcom.Parsers
             catch
             {
 
-                throw new ParserException($"Could not parse {FileLocation.ScheduleFileLocationString}");
+                throw new ParserException($"Could not parse {Constants.FileLocation.ScheduleFileLocationString}");
             }
         }
     }

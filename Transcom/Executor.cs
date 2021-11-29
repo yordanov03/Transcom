@@ -38,9 +38,9 @@ namespace Transcom
         {
             var fileData = this._fileReader.ImportFiles();
 
-            var schedule = fileData[2];
-            var dailyRoute = fileData[0];
-            var timetable = fileData[1];
+            var schedule = fileData.ScheduleData;
+            var dailyRoute = fileData.DailyRouteData;
+            var timetable = fileData.TimetableData;
 
             var parsedSchedule = this._scheduleParser.ParseSchedule(schedule);
 
