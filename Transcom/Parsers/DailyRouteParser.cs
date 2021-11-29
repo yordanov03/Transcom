@@ -9,10 +9,15 @@ namespace Transcom.Parsers
 {
     public class DailyRouteParser<T> : IParser<DailyRoute> where T : DailyRoute
     {
+        private readonly IDailyRouteFactory _dailyRouteFactory;
+
+        public DailyRouteParser(IDailyRouteFactory dailyRouteFactory)
+        {
+            this._dailyRouteFactory = dailyRouteFactory;
+        }
         public List<DailyRoute> ParseInput(string[] runningCalendarInput, string[] runningCodes)
         {
             var dailyRoutes = new List<DailyRoute>();
-            var dailyRouteFactory = new DailyRouteFactory();
 
             try
             {
@@ -28,7 +33,7 @@ namespace Transcom.Parsers
 
                             if (code == dailyRunningCode)
                             {
-                                var parsedDailyRoute = (DailyRoute)dailyRouteFactory
+                                var parsedDailyRoute = (DailyRoute)this._dailyRouteFactory
                                     .WithRunningDailyCode(match.Groups[1].Value)
                                     .WithRunningDate(match.Groups[2].Value)
                                     .Build();

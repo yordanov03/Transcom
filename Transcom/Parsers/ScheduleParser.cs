@@ -9,11 +9,16 @@ namespace Transcom.Parsers
 {
     public class ScheduleParser : IScheduleParser
     {
+        private readonly IScheduleFactory _scheduleFactory;
 
+        public ScheduleParser(IScheduleFactory _scheduleFactory)
+        {
+            this._scheduleFactory = _scheduleFactory;
+        }
         public List<Schedule> ParseSchedule(string[] runningDaysInput)
         {
             var schedules = new List<Schedule>();
-            var scheduleFactory = new ScheduleFactory();
+
 
             try
             {
@@ -24,7 +29,7 @@ namespace Transcom.Parsers
                     foreach (Match match in rgx.Matches(day))
                     {
 
-                        var timetable = (Schedule)scheduleFactory
+                        var timetable = (Schedule)this._scheduleFactory
                             .WithValidFrom(match.Groups[1].Value)
                             .WithRunningCode(match.Groups[2].Value)
                             .WithValidTo(match.Groups[3].Value)

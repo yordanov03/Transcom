@@ -4,6 +4,8 @@ using PSITranscom;
 using PSITranscom.Models;
 using System.Reflection;
 using Transcom.Factories;
+using Transcom.Factories.ScheduleFactory;
+using Transcom.Factories.TimetableFactory;
 using Transcom.Parsers;
 
 namespace Transcom
@@ -20,8 +22,12 @@ namespace Transcom
                     .AddTransient<IFileReader, FileReader>()
                     .AddTransient<IScheduleParser, ScheduleParser>()
                     .AddTransient<IParser<DailyRoute>, DailyRouteParser<DailyRoute>>()
-                    .AddTransient<IParser<Timetable>, TimetableParser<Timetable>>());
+                    .AddTransient<IParser<Timetable>, TimetableParser<Timetable>>()
+                    .AddTransient<IDailyRouteFactory, DailyRouteFactory>()
+                    .AddTransient<IScheduleFactory,ScheduleFactory>()
+                    .AddTransient<ITimetableFactory, TimetableFactory>());
 
         }
+
     }
 }
