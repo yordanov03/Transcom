@@ -15,7 +15,7 @@ namespace Transcom.Parsers
         {
             this._scheduleFactory = _scheduleFactory;
         }
-        public List<Schedule> ParseSchedule(string[] runningDaysInput)
+        public List<Schedule> ParseSchedule(string[] scheduleInput)
         {
             var schedules = new List<Schedule>();
 
@@ -24,9 +24,9 @@ namespace Transcom.Parsers
             {
                 Regex rgx = new Regex(RegexPatternConstants.ScheduleParserRegexExpression);
 
-                foreach (var day in runningDaysInput)
+                foreach (var schedule in scheduleInput)
                 {
-                    foreach (Match match in rgx.Matches(day))
+                    foreach (Match match in rgx.Matches(schedule))
                     {
 
                         var timetable = (Schedule)this._scheduleFactory
