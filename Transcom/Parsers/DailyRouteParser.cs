@@ -7,12 +7,17 @@ using static Transcom.Constants;
 
 namespace Transcom.Parsers
 {
-    public static class DailyRouteParser
+    public class DailyRouteParser<T> : IParser<DailyRoute> where T : DailyRoute
     {
-        public static List<DailyRoute> Parse(string[] runningCalendarInput, string[] runningCodes)
+        private readonly IDailyRouteFactory _dailyRouteFactory;
+
+        public DailyRouteParser(IDailyRouteFactory dailyRouteFactory)
+        {
+            this._dailyRouteFactory = dailyRouteFactory;
+        }
+        public List<DailyRoute> ParseInput(string[] runningCalendarInput, string[] runningCodes)
         {
             var dailyRoutes = new List<DailyRoute>();
-            var dailyRouteFactory = new DailyRouteFactory();
 
             try
             {
@@ -28,12 +33,7 @@ namespace Transcom.Parsers
 
                             if (code == dailyRunningCode)
                             {
-
-                                //var parsedRunningCalendar = new DailyRoute(
-                                //match.Groups[1].Value,
-                                //match.Groups[2].Value);
-
-                                var parsedDailyRoute = (DailyRoute)dailyRouteFactory
+                                var parsedDailyRoute = (DailyRoute)this._dailyRouteFactory
                                     .WithRunningDailyCode(match.Groups[1].Value)
                                     .WithRunningDate(match.Groups[2].Value)
                                     .Build();
@@ -49,7 +49,7 @@ namespace Transcom.Parsers
             catch
             {
 
-                throw new DailyRouteParserException($"Could not parse file {FileLocation.DailyRouteFileLocationString}");
+                throw new ParserException($"Could not parse file {FileLocation.DailyRouteFileLocationString}");
             }
 
         }

@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Transcom.Exceptions;
 using Transcom.Factories.ScheduleFactory;
-using Transcom.Factories.TimetableFactory;
 using static Transcom.Constants;
 
 namespace Transcom.Parsers
 {
-    public static class TimetableParser
+    public class TimetableParser<T> : IParser<Timetable> where T : Timetable
     {
-        public static List<Timetable> Parse(string[] timeTableInput, string[] trainNumbers)
+        private readonly ITimetableFactory _timetableFactory;
+
+        public TimetableParser(ITimetableFactory timetableFactory)
         {
-            var parsedSchedules = new List<Timetable>();
-            var scheduleFactory = new Schedule1Factory();
+            this._timetableFactory = timetableFactory;
+        }
+        public List<Timetable> ParseInput(string[] timeTableInput, string[] trainNumbers)
+        {
+            var parsedTimetables = new List<Timetable>();
 
             try
             {
@@ -29,14 +33,8 @@ namespace Transcom.Parsers
                         {
                             if (trainNumber == parsedTrainNumber)
                             {
-                                //var parsedtimetable = new Schedule(
-                                //match.Groups[1].Value,
-                                //parsedTrainNumber,
-                                //match.Groups[3].Value,
-                                //match.Groups[4].Value,
-                                //match.Groups[5].Value);
 
-                                var parsedSchedule = (Timetable)scheduleFactory
+                                var parsedSchedule = (Timetable)this._timetableFactory
                                     .WithSequenceNumber(match.Groups[1].Value)
                                     .WithTrainNumber(parsedTrainNumber)
                                     .WithLoctionCode(match.Groups[3].Value)
@@ -45,18 +43,18 @@ namespace Transcom.Parsers
                                     .Build();
 
 
-                                parsedSchedules.Add(parsedSchedule);
+                                parsedTimetables.Add(parsedSchedule);
                             }
                         }
                     }
                 }
 
-                return parsedSchedules;
+                return parsedTimetables;
             }
             catch
             {
 
-                throw new TimetableParserException($"Could not parse {FileLocation.TimetableFileLocationString}");
+                throw new ParserException($"Could not parse {FileLocation.TimetableFileLocationString}");
             }
         }
     }

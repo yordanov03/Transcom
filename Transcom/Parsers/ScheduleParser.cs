@@ -1,31 +1,35 @@
 ﻿using PSITranscom.Models;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Transcom.Exceptions;
 using Transcom.Factories.TimetableFactory;
 using static Transcom.Constants;
-using PSITranscom.Models;
-using Transcom.Exceptions;
 
 namespace Transcom.Parsers
 {
-    public static class ScheduleParser
+    public class ScheduleParser : IScheduleParser
     {
+        private readonly IScheduleFactory _scheduleFactory;
 
-        public static List<Schedule> Parse(string[] runningDaysInput)
+        public ScheduleParser(IScheduleFactory _scheduleFactory)
         {
-            var timetables = new List<Schedule>();
-            var timetableFactory = new ScheduleFactory();
+            this._scheduleFactory = _scheduleFactory;
+        }
+        public List<Schedule> ParseSchedule(string[] scheduleInput)
+        {
+            var schedules = new List<Schedule>();
+
 
             try
             {
                 Regex rgx = new Regex(RegexPatternConstants.ScheduleParserRegexExpression);
 
-                foreach (var day in runningDaysInput)
+                foreach (var schedule in scheduleInput)
                 {
-                    foreach (Match match in rgx.Matches(day))
+                    foreach (Match match in rgx.Matches(schedule))
                     {
 
-                        var timetable = (Schedule)timetableFactory
+                        var timetable = (Schedule)this._scheduleFactory
                             .WithValidFrom(match.Groups[1].Value)
                             .WithRunningCode(match.Groups[2].Value)
                             .WithValidTo(match.Groups[3].Value)
@@ -33,16 +37,16 @@ namespace Transcom.Parsers
                             .Build();
 
 
-                        timetables.Add(timetable);
+                        schedules.Add(timetable);
                     }
                 }
 
-                return timetables;
+                return schedules;
             }
             catch
             {
 
-                throw new ScheduleParserException($"Could not parse {FileLocation.ScheduleFileLocationString}");
+                throw new ParserException($"Could not parse {FileLocation.ScheduleFileLocationString}");
             }
         }
     }

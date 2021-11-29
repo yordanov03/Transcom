@@ -7,6 +7,10 @@ namespace Transcom.Dtos
 {
     public class TrainScheduleDto : IMapFrom<Schedule>
     {
+        public TrainScheduleDto()
+        {
+
+        }
         public TrainScheduleDto(
             string trainNumber,
             string validFrom,
@@ -23,9 +27,5 @@ namespace Transcom.Dtos
         public string ValidTo { get; set; }
         public List<ScheduledStopDto> ScheduledStops { get; set; } = new List<ScheduledStopDto>();
 
-        public void Mapping(Profile mapper)
-        {
-            mapper.CreateMap<Schedule, TrainScheduleDto>();
-        }
     }
 }
