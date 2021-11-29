@@ -13,7 +13,7 @@ namespace Transcom.Parsers
         public List<Timetable> ParseInput(string[] timeTableInput, string[] trainNumbers)
         {
             var parsedSchedules = new List<Timetable>();
-            var scheduleFactory = new Schedule1Factory();
+            var scheduleFactory = new TimetableFactory();
 
             try
             {
