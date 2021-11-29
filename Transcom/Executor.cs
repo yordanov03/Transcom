@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using PSITranscom;
+using PSITranscom.Models;
 using System.Linq;
 using Transcom.Parsers;
 
@@ -9,13 +10,22 @@ namespace Transcom
     {
         private readonly IMapper _mapper;
         private readonly IFileReader _fileReader;
+        private readonly IScheduleParser _scheduleParser;
+        private readonly IParser<DailyRoute> _dailyRouteParser;
+        private readonly IParser<Timetable> _timetableParser;
 
         public Executor(
             IMapper mapper,
-            IFileReader fileReader)
+            IFileReader fileReader,
+            IScheduleParser scheduleParser,
+            IParser<DailyRoute> dailyRouteParser,
+            IParser<Timetable> timetableParser)
         {
             this._mapper = mapper;
             this._fileReader = fileReader;
+            this._scheduleParser = scheduleParser;
+            this._dailyRouteParser = dailyRouteParser;
+            this._timetableParser = timetableParser;
         }
 
         public void Execute()
@@ -28,11 +38,11 @@ namespace Transcom
 
 
 
-            //var parsedSchedule = ScheduleParser.Parse(schedule);
+            var parsedSchedule = this._scheduleParser.ParseSchedule(schedule);
 
             ////Getting only the daily route that matches the running code
-            //var parsedDailyRoute = DailyRouteParser.Parse(dailyRoute, parsedSchedule.Select(d => d.RunningCode).Distinct().ToArray());
-            //var parsedTimetable = TimetableParser.Parse(dailyRoute, parsedSchedule.Select(d => d.TrainNumber).ToArray());
+            var parsedDailyRoute = this._dailyRouteParser.ParseInput(dailyRoute, parsedSchedule.Select(d => d.RunningCode).Distinct().ToArray());
+            var parsedTimetable = this._timetableParser.ParseInput(timetable, parsedSchedule.Select(d => d.TrainNumber).ToArray());
 
             //var scheduleBuilder = new JsonTrainSchedulerBuilder(_mapper);
             //var schedulePerTrain = scheduleBuilder.BuildObject(parsedSchedule, parsedDailyRoute, parsedTimetable);

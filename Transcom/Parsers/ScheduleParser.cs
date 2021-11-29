@@ -1,20 +1,19 @@
 ﻿using PSITranscom.Models;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Transcom.Exceptions;
 using Transcom.Factories.TimetableFactory;
 using static Transcom.Constants;
-using PSITranscom.Models;
-using Transcom.Exceptions;
 
 namespace Transcom.Parsers
 {
-    public static class ScheduleParser
+    public class ScheduleParser : IScheduleParser
     {
 
-        public static List<Schedule> Parse(string[] runningDaysInput)
+        public List<Schedule> ParseSchedule(string[] runningDaysInput)
         {
-            var timetables = new List<Schedule>();
-            var timetableFactory = new ScheduleFactory();
+            var schedules = new List<Schedule>();
+            var scheduleFactory = new ScheduleFactory();
 
             try
             {
@@ -25,7 +24,7 @@ namespace Transcom.Parsers
                     foreach (Match match in rgx.Matches(day))
                     {
 
-                        var timetable = (Schedule)timetableFactory
+                        var timetable = (Schedule)scheduleFactory
                             .WithValidFrom(match.Groups[1].Value)
                             .WithRunningCode(match.Groups[2].Value)
                             .WithValidTo(match.Groups[3].Value)
@@ -33,11 +32,11 @@ namespace Transcom.Parsers
                             .Build();
 
 
-                        timetables.Add(timetable);
+                        schedules.Add(timetable);
                     }
                 }
 
-                return timetables;
+                return schedules;
             }
             catch
             {

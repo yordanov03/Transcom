@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using Transcom;
 using Transcom.Exceptions;
 
@@ -38,7 +36,7 @@ namespace PSITranscom
                 }
                 return importedData;
             }
-            catch (Exception e)
+            catch
             {
                 throw new ParserException("Could not parse file");
             }
