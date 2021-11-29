@@ -15,27 +15,25 @@ namespace Transcom
             this._mapper = mapper;   
         }
         public List<TrainScheduleDto> BuildTrainSchedule(
-            List<Schedule> timetables,
-            List<DailyRoute> runningDay,
-            List<Timetable> schedule
+            List<Schedule> schedules,
+            List<DailyRoute> dailyRoute,
+            List<Timetable> timetables
             )
         {
 
             var trainSchedules = new List<TrainScheduleDto>();
 
-            foreach (var timetable in timetables)
+            foreach (var schedule in schedules)
             {
-                var selectedTimetable = schedule.Where(s => s.TrainNumber == timetable.TrainNumber).OrderBy(s => s.SequenceNumber).ToList();
-                var selectedDailyRoute = runningDay.Where(rd => rd.RunningDayCode == timetable.RunningCode).ToList();
-                var projectedSelectedRunningDays = this._mapper.Map<List<Timetable>,List<ScheduledStopDto>>(selectedTimetable);
+                var selectedTimetable = timetables.Where(s => s.TrainNumber == schedule.TrainNumber).OrderBy(s => s.SequenceNumber).ToList();
+                var selectedDailyRoute = dailyRoute.Where(rd => rd.RunningDayCode == schedule.RunningCode).ToList();
 
-                var trainScheduleCompraised = new TrainScheduleDto(
-                    timetable.TrainNumber,
-                    timetable.ValidFrom,
-                    timetable.ValidTo,
-                    projectedSelectedRunningDays);
+                var mappedTrainSchedule = this._mapper.Map<Schedule, TrainScheduleDto>(schedule);
+                var mappedTimetable = this._mapper.Map<List<Timetable>,List<ScheduledStopDto>>(selectedTimetable);
 
-                trainSchedules.Add(trainScheduleCompraised);
+                mappedTrainSchedule.ScheduledStops = mappedTimetable;
+
+                trainSchedules.Add(mappedTrainSchedule);
             }
 
             return trainSchedules;

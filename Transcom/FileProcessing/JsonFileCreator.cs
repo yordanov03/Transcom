@@ -22,7 +22,7 @@ namespace Transcom
                     serializer.Serialize(file, schedule);
                 }
             }
-            
+
         }
     }
 }
