@@ -24,6 +24,7 @@ namespace PSITranscom
             try
             {
                 executor.Execute();
+                Console.WriteLine("Success!");
             }
             catch (Exception)
             {
