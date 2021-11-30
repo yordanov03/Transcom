@@ -2,9 +2,9 @@
 using PSITranscom;
 using PSITranscom.Models;
 using System.Linq;
-using Transcom.Parsers;
+using PSITranscom.Parsers;
 
-namespace Transcom
+namespace PSITranscom
 {
     public class Executor
     {
@@ -36,20 +36,26 @@ namespace Transcom
 
         public void Execute()
         {
+            //Import data
             var fileData = this._fileReader.ImportFiles();
 
             var schedule = fileData.ScheduleData;
             var dailyRoute = fileData.DailyRouteData;
             var timetable = fileData.TimetableData;
 
+            //Parse the table containing trainNumber and runningCode that will allow to load only the data of interest from the other two collections
             var parsedSchedule = this._scheduleParser.ParseSchedule(schedule);
 
-            ////Getting only the daily route that matches the running code
+            //Importing only the daily routes that match the running code
             var parsedDailyRoute = this._dailyRouteParser.ParseInput(dailyRoute, parsedSchedule.Select(d => d.RunningCode).Distinct().ToArray());
+
+            //Importing only timetables that match the already parsed train numbers
             var parsedTimetable = this._timetableParser.ParseInput(timetable, parsedSchedule.Select(d => d.TrainNumber).ToArray());
 
+            //Comprise Dto data for json file
             var trainScheduleBuilder = this._trainScheduleBuilder.BuildTrainSchedule(parsedSchedule, parsedDailyRoute, parsedTimetable);
 
+            //Create json file with the information from the dto
             this._jsonFileCreator.CreateJsonFile(trainScheduleBuilder);
         }
     }

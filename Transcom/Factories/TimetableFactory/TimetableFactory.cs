@@ -1,6 +1,6 @@
 ﻿using PSITranscom.Models;
 
-namespace Transcom.Factories.ScheduleFactory
+namespace PSITranscom.Factories.ScheduleFactory
 {
     public class TimetableFactory : ITimetableFactory
     {

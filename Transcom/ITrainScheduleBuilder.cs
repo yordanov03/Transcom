@@ -1,8 +1,8 @@
 ﻿using PSITranscom.Models;
 using System.Collections.Generic;
-using Transcom.Dtos;
+using PSITranscom.Dtos;
 
-namespace Transcom
+namespace PSITranscom
 {
     public interface ITrainScheduleBuilder
     {

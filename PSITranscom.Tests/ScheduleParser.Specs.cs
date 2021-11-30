@@ -1,10 +1,10 @@
 ﻿using PSITranscom.Models;
 using System.Collections.Generic;
-using Transcom.Factories.TimetableFactory;
-using Transcom.Parsers;
+using PSITranscom.Factories.TimetableFactory;
+using PSITranscom.Parsers;
 using Xunit;
 
-namespace Transcom.Tests
+namespace PSITranscom.Tests
 {
     public class ScheduleParserSpecs
     {

@@ -1,7 +1,7 @@
 ﻿using PSITranscom.Models;
 using System.Collections.Generic;
 
-namespace Transcom
+namespace PSITranscom
 {
     public interface IFileReader
     {

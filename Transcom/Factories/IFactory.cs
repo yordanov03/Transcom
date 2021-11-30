@@ -1,4 +1,4 @@
-﻿namespace Transcom.Factories
+﻿namespace PSITranscom.Factories
 {
     public interface IFactory<T>
     {

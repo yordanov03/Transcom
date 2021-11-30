@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using PSITranscom.Models;
 using System.Collections.Generic;
-using Transcom.Mapper;
+using PSITranscom.Mapper;
 
-namespace Transcom.Dtos
+namespace PSITranscom.Dtos
 {
     public class TrainScheduleDto : IMapFrom<Schedule>
     {

@@ -1,11 +1,11 @@
 ﻿using PSITranscom.Models;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using Transcom.Exceptions;
-using Transcom.Factories.TimetableFactory;
+using PSITranscom.Exceptions;
+using PSITranscom.Factories.TimetableFactory;
 using static PSITranscom.Constants;
 
-namespace Transcom.Parsers
+namespace PSITranscom.Parsers
 {
     public class ScheduleParser : IScheduleParser
     {
@@ -46,7 +46,7 @@ namespace Transcom.Parsers
             catch
             {
 
-                throw new ParserException($"{ErrorMessages.ParserErrorMessage} {FilePath.ScheduleFileLocationString}");
+                throw new ParserException($"{ErrorMessages.ParserErrorMessage}");
             }
         }
     }

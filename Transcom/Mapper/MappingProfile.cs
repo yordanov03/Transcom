@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 
-namespace Transcom.Mapper
+namespace PSITranscom.Mapper
 {
     public class MappingProfile : Profile
     {

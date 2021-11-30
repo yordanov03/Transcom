@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Transcom.Exceptions
+namespace PSITranscom.Exceptions
 {
     public class ParserException : Exception
     {

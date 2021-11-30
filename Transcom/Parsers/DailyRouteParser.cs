@@ -1,11 +1,11 @@
 ﻿using PSITranscom.Models;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using Transcom.Exceptions;
-using Transcom.Factories;
+using PSITranscom.Exceptions;
+using PSITranscom.Factories;
 using static PSITranscom.Constants;
 
-namespace Transcom.Parsers
+namespace PSITranscom.Parsers
 {
     public class DailyRouteParser : IParser<DailyRoute>
     {
@@ -33,8 +33,8 @@ namespace Transcom.Parsers
 
                             if (code == dailyRunningCode)
                             {
-                                var parsedDailyRoute = (DailyRoute)this._dailyRouteFactory
-                                    .WithRunningDailyCode(match.Groups[1].Value)
+                                var parsedDailyRoute = this._dailyRouteFactory
+                                    .WithRunningDailyCode(dailyRunningCode)
                                     .WithRunningDate(match.Groups[2].Value)
                                     .Build();
 
@@ -49,7 +49,7 @@ namespace Transcom.Parsers
             catch
             {
 
-                throw new ParserException($"{ErrorMessages.ParserErrorMessage} {FilePath.DailyRouteFileLocationString}");
+                throw new ParserException($"{ErrorMessages.ParserErrorMessage}");
             }
 
         }

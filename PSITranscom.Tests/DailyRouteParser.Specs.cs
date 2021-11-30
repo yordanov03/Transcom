@@ -1,10 +1,10 @@
 ﻿using PSITranscom.Models;
 using System.Collections.Generic;
-using Transcom.Factories;
-using Transcom.Parsers;
+using PSITranscom.Factories;
+using PSITranscom.Parsers;
 using Xunit;
 
-namespace Transcom.Tests
+namespace PSITranscom.Tests
 {
     public class DailyRouteParserSpecs
     {

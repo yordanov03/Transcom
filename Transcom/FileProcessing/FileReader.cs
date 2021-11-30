@@ -1,10 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
+using PSITranscom.Exceptions;
 using PSITranscom.Models;
-using System.Collections.Generic;
 using System.IO;
-using Transcom;
-using Transcom.Exceptions;
+using static PSITranscom.Constants.ErrorMessages;
 
 namespace PSITranscom
 {
@@ -19,7 +17,7 @@ namespace PSITranscom
 
         public FileData ImportFiles()
         {
-            
+
             try
             {
                 var fileData = new FileData
@@ -27,7 +25,7 @@ namespace PSITranscom
                     DailyRouteData = File.ReadAllLines(_fileLocations.DailyRouteFileLocation),
                     ScheduleData = File.ReadAllLines(_fileLocations.ScheduleFileLocation),
                     TimetableData = File.ReadAllLines(_fileLocations.TimetableFileLocation)
-                    
+
                 };
 
                 return fileData;
@@ -35,7 +33,7 @@ namespace PSITranscom
             }
             catch
             {
-                throw new ParserException("Could not parse file");
+                throw new ParserException($"{ParserErrorMessage}");
             }
         }
     }

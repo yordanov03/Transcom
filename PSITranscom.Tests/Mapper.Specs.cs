@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using PSITranscom.Models;
-using Transcom.Dtos;
-using Transcom.Mapper;
+using PSITranscom.Dtos;
+using PSITranscom.Mapper;
 using Xunit;
 
 namespace Transcom.Tests

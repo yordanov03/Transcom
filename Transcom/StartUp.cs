@@ -2,7 +2,7 @@
 using System;
 using static PSITranscom.Constants.ErrorMessages;
 
-namespace Transcom
+namespace PSITranscom
 {
     class StartUp
     {

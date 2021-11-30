@@ -1,7 +1,7 @@
 ﻿using PSITranscom.Models;
 using System.Collections.Generic;
 
-namespace Transcom.Parsers
+namespace PSITranscom.Parsers
 {
     public interface IScheduleParser
     {

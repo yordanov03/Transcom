@@ -1,7 +1,7 @@
 ﻿using PSITranscom.Models;
 using System.Collections.Generic;
-using Transcom.Factories.ScheduleFactory;
-using Transcom.Parsers;
+using PSITranscom.Factories.ScheduleFactory;
+using PSITranscom.Parsers;
 using Xunit;
 
 namespace PSITranscom.Tests

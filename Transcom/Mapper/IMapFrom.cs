@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Transcom.Mapper
+namespace PSITranscom.Mapper
 {
     public interface IMapFrom<T>
     {

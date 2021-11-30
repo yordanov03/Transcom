@@ -1,14 +1,13 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PSITranscom;
+using PSITranscom.Factories;
+using PSITranscom.Factories.ScheduleFactory;
+using PSITranscom.Factories.TimetableFactory;
 using PSITranscom.Models;
+using PSITranscom.Parsers;
 using System.Reflection;
-using Transcom.Factories;
-using Transcom.Factories.ScheduleFactory;
-using Transcom.Factories.TimetableFactory;
-using Transcom.Parsers;
 
-namespace Transcom
+namespace PSITranscom
 {
     public static class HostBuilder
     {

@@ -1,7 +1,7 @@
 ﻿using PSITranscom.Models;
-using Transcom.Mapper;
+using PSITranscom.Mapper;
 
-namespace Transcom.Dtos
+namespace PSITranscom.Dtos
 {
     public class ScheduledStopDto : IMapFrom<Timetable>
     {

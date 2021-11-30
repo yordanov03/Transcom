@@ -1,6 +1,6 @@
 ﻿using PSITranscom.Models;
 
-namespace Transcom.Factories
+namespace PSITranscom.Factories
 {
     public interface IDailyRouteFactory : IFactory<DailyRoute>
     {

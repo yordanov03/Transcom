@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Transcom.Parsers
+namespace PSITranscom.Parsers
 {
     public interface IParser<T> where T : class
     {
