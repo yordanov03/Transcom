@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Transcom.Exceptions;
 using Transcom.Factories.TimetableFactory;
-using static Transcom.Constants;
+using static PSITranscom.Constants;
 
 namespace Transcom.Parsers
 {
@@ -46,7 +46,7 @@ namespace Transcom.Parsers
             catch
             {
 
-                throw new ParserException($"Could not parse {Constants.FileLocation.ScheduleFileLocationString}");
+                throw new ParserException($"{ErrorMessages.ParserErrorMessage} {FilePath.ScheduleFileLocationString}");
             }
         }
     }

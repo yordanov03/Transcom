@@ -1,22 +1,37 @@
-﻿namespace Transcom
+﻿using PSITranscom.Exceptions;
+using System;
+using static PSITranscom.Constants.ErrorMessages;
+
+namespace Transcom
 {
     class StartUp
     {
         static void Main(string[] args)
         {
+            Executor executor;
 
             try
             {
-
+                using var host = HostBuilder.CreateHostBuilder(args).Build();
+                 executor = (Executor)host.Services.GetService(typeof(Executor));
             }
-            catch (System.Exception)
+            catch (Exception)
             {
 
-                throw;
+                throw new ExecutorException(ExecutorCompileMessage);
             }
-            using var host = HostBuilder.CreateHostBuilder(args).Build();
-            var executor = (Executor)host.Services.GetService(typeof(Executor));
-            executor.Execute();
+
+            try
+            {
+                executor.Execute();
+            }
+            catch (Exception)
+            {
+
+                throw new ExecutorException(ExecutorProcessDataMessage);
+            }
+
+            
         }
     }
 }

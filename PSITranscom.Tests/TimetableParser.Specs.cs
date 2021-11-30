@@ -16,7 +16,7 @@ namespace PSITranscom.Tests
         {
             //Arrange
             var timetableFactory = new TimetableFactory();
-            var timetableParser = new TimetableParser<Timetable>(timetableFactory);
+            var timetableParser = new TimetableParser(timetableFactory);
 
             //Act
             var parsedTimetables = timetableParser.ParseInput(timetableInput, trainNumbers);
