@@ -2,7 +2,7 @@
 
 namespace Transcom.Factories.ScheduleFactory
 {
-    internal class TimetableFactory : ITimetableFactory
+    public class TimetableFactory : ITimetableFactory
     {
         private string sequenceNumber;
         private string trainNumber;

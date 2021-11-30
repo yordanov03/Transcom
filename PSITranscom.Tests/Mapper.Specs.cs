@@ -8,12 +8,7 @@ namespace Transcom.Tests
 {
     public class MapperSpecs
     {
-        [Fact]
-        public void AutoMapperConfigIsValid()
-        {
-            var config = new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>());
-            config.AssertConfigurationIsValid();
-        }
+
         [Fact]
         public void MapperShouldMapTrainScheduleDto()
         {
