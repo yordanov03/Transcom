@@ -7,7 +7,7 @@ using static Transcom.Constants;
 
 namespace Transcom.Parsers
 {
-    public class TimetableParser<T> : IParser<Timetable> where T : Timetable
+    public class TimetableParser : IParser<Timetable>
     {
         private readonly ITimetableFactory _timetableFactory;
 

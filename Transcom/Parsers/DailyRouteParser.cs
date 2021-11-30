@@ -7,7 +7,7 @@ using static Transcom.Constants;
 
 namespace Transcom.Parsers
 {
-    public class DailyRouteParser<T> : IParser<DailyRoute> where T : DailyRoute
+    public class DailyRouteParser : IParser<DailyRoute>
     {
         private readonly IDailyRouteFactory _dailyRouteFactory;
 
