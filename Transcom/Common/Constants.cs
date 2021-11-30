@@ -11,9 +11,6 @@
 
         public static class FilePath
         {
-            //public const string DailyRouteFileLocationString = @"C:\Users\sveto\source\repos\Transcom\Transcom\Source\A32_Sample SPOT Table TOMSCALENDAR.txt";
-            //public const string TimetableFileLocationString = @"C:\Users\sveto\source\repos\Transcom\Transcom\Source\A33_Sample SPOT Table TOMSTRAINDET.txt";
-            //public const string ScheduleFileLocationString = @"C:\Users\sveto\source\repos\Transcom\Transcom\Source\A34_Sample SPOT Table TOMSTRAINHEAD.txt";
             public const string OutputFileLocation = @"..\..\..\Output\";
         }
 

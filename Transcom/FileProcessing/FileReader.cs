@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using PSITranscom.Exceptions;
 using PSITranscom.Models;
+using System;
 using System.IO;
 using static PSITranscom.Constants.ErrorMessages;
 
@@ -17,7 +18,6 @@ namespace PSITranscom
 
         public FileData ImportFiles()
         {
-
             try
             {
                 var fileData = new FileData
@@ -31,9 +31,9 @@ namespace PSITranscom
                 return fileData;
 
             }
-            catch
+            catch (Exception e)
             {
-                throw new ParserException($"{ParserErrorMessage}");
+                throw new Exception(e.Message);
             }
         }
     }
