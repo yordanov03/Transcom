@@ -16,7 +16,7 @@ namespace Transcom.Tests
         {
             //Arrange
             var dailyRouteFactory = new DailyRouteFactory();
-            var dailyRouteParser = new DailyRouteParser<DailyRoute>(dailyRouteFactory);
+            var dailyRouteParser = new DailyRouteParser(dailyRouteFactory);
 
 
             //Act

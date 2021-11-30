@@ -1,5 +1,4 @@
 ﻿using PSITranscom.Models;
-using System;
 
 namespace Transcom.Factories.TimetableFactory
 {
@@ -34,11 +33,11 @@ namespace Transcom.Factories.TimetableFactory
             return this;
         }
 
-        public object Build() => new Schedule(
+        public Schedule Build() => new Schedule(
             validFrom,
             runningCode,
             validTo,
             trainNumber);
-        
+
     }
 }

@@ -11,8 +11,8 @@ namespace PSITranscom.Models
             this.RunningDayCode = runningDayCode;
             this.RunningDate = runningDate;
         }
-        public string RunningDayCode { get; set; }
-        public string RunningDate { get; set; }
+        public string RunningDayCode { get; }
+        public string RunningDate { get; }
 
     }
 }

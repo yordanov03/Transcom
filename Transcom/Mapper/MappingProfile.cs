@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
-using PSITranscom.Models;
 using System;
 using System.Linq;
 using System.Reflection;
-using Transcom.Dtos;
 
 namespace Transcom.Mapper
 {
@@ -25,7 +23,7 @@ namespace Transcom.Mapper
             {
                 var instance = Activator.CreateInstance(type);
 
-                const string mappingMethodName = "Mapping";
+                const string mappingMethodName = nameof(IMapFrom<object>.Mapping);
 
                 var methodInfo = type.GetMethod(mappingMethodName)
                                  ?? type.GetInterface("IMapFrom`1")?.GetMethod(mappingMethodName);

@@ -4,6 +4,6 @@ namespace Transcom.Parsers
 {
     public interface IParser<T> where T : class
     {
-        List<T> ParseInput(string[] input, string[] conditionalCollection);
+        List<T> ParseInput(string[] input, string[] additionalArguments);
     }
 }

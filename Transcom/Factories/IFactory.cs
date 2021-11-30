@@ -1,7 +1,7 @@
 ﻿namespace Transcom.Factories
 {
-    public interface IFactory
+    public interface IFactory<T>
     {
-        object Build();
+        T Build();
     }
 }

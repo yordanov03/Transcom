@@ -39,7 +39,7 @@ namespace Transcom.Factories.ScheduleFactory
             this.trainNumber = trainNumber;
             return this;
         }
-        public object Build() => new Timetable(
+        public Timetable Build() => new Timetable(
             sequenceNumber,
             trainNumber,
             locationCode,

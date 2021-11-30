@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using PSITranscom.Models;
+using System.Collections.Generic;
 using System.IO;
 using Transcom;
 using Transcom.Exceptions;
@@ -7,19 +10,28 @@ namespace PSITranscom
 {
     public class FileReader : IFileReader
     {
-        private List<string[]> importedData = new List<string[]>();
+        private readonly FileLocation _fileLocations;
 
-        public List<string[]> ImportFiles()
+        public FileReader(IOptions<FileLocation> options)
         {
+            this._fileLocations = options.Value;
+        }
+
+        public FileData ImportFiles()
+        {
+            
             try
             {
-                string[] filePaths = Directory.GetFiles(@"../../../Source");
-                foreach (var filePath in filePaths)
+                var fileData = new FileData
                 {
-                    var processedFile = File.ReadAllLines(filePath);
-                    importedData.Add(processedFile);
-                }
-                return importedData;
+                    DailyRouteData = File.ReadAllLines(_fileLocations.DailyRouteFileLocation),
+                    ScheduleData = File.ReadAllLines(_fileLocations.ScheduleFileLocation),
+                    TimetableData = File.ReadAllLines(_fileLocations.TimetableFileLocation)
+                    
+                };
+
+                return fileData;
+
             }
             catch
             {

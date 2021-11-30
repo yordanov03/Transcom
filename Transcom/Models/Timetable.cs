@@ -15,14 +15,14 @@
             this.ArrivalTime = arrivalTime;
             this.DepartureTime = departureTime;
         }
-        public string SequenceNumber { get; set; }
+        public string SequenceNumber { get; }
 
-        public string TrainNumber { get; set; }
+        public string TrainNumber { get; }
 
-        public string LocationCode { get; set; }
+        public string LocationCode { get; }
 
-        public string ArrivalTime { get; set; }
+        public string ArrivalTime { get; }
 
-        public string DepartureTime { get; set; }
+        public string DepartureTime { get; }
     }
 }
