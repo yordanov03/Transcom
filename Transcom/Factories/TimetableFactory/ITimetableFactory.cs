@@ -1,6 +1,8 @@
-﻿namespace Transcom.Factories.ScheduleFactory
+﻿using PSITranscom.Models;
+
+namespace Transcom.Factories.ScheduleFactory
 {
-    public interface ITimetableFactory : IFactory
+    public interface ITimetableFactory : IFactory<Timetable>
     {
 
         ITimetableFactory WithSequenceNumber(string sequenceNumber);

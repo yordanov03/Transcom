@@ -19,7 +19,7 @@ namespace Transcom.Factories
             return this;
         }
 
-        public object Build() => new DailyRoute(dailyRunningCode, runningDate);
+        public DailyRoute Build() => new DailyRoute(dailyRunningCode, runningDate);
         
     }
 }
